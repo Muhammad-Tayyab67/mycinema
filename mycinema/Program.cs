@@ -1,6 +1,11 @@
+using mycinema.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connect = builder.Configuration.GetConnectionString("DefaultConnectionString");
+builder.Services.AddDbContext<AppDBContext>(option => option.UseSqlServer(connect));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -25,3 +30,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+AppDbInitializer.Seed(app);
