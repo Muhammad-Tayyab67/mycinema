@@ -8,11 +8,14 @@ namespace mycinema.Models
     {
         [Key]
         public int id { get; set; }
+        [Display(Name = "Full Name")]
         public string Name { get; set; }
-        public string profilepicurl { get; set; }
-        public string descr { get; set; }
-
+        [Display(Name = "imgurl")]
         public string imgurl { get; set; }
+        [Display(Name = "BIO")]
+        public string descr { get; set; }
+        
+        [Display(Name = "Price")]
         public double price { get; set; }
 
         public DateTime starttime { get; set; }

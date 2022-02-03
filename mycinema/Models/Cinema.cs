@@ -6,8 +6,12 @@ namespace mycinema.Models
     {
         [Key]
         public int id { get; set; }
+
+        [Display(Name ="Cinema Name")]
         public string Name { get; set; }
+        [Display(Name = "LOGO")]
         public string logo { get; set; }
+        [Display(Name = "Discription")]
         public string desc { get; set; }
 
         public List<Movie> Movies { get; set; }

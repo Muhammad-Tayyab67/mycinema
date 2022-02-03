@@ -61,7 +61,7 @@ namespace mycinema.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    profilepicurl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                 
                     descr = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     umgurl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     price = table.Column<double>(type: "float", nullable: false),

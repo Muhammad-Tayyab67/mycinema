@@ -14,7 +14,7 @@ namespace mycinema.Controllers
         public async Task<IActionResult> Index()
         {
             var allcinemas = await _conext.Cinemas.ToListAsync();
-            return View();
+            return View(allcinemas);
         }
     }
 }

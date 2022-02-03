@@ -1,20 +1,19 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using mycinema.Models;
+﻿using mycinema.Models;
 
 namespace mycinema.Data
 {
     public class AppDbInitializer
     {
         public static void Seed(IApplicationBuilder applicationBuilder)
-        {
-            using (var servicescope = applicationBuilder.ApplicationServices.CreateScope()) 
+         {
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
-                var context= servicescope.ServiceProvider.GetService<AppDBContext>();
+                var context = serviceScope.ServiceProvider.GetService<AppDBContext>();
 
                 context.Database.EnsureCreated();
-                
+
                 //Cinema
-                if(!context.Cinemas.Any())
+                if (!context.Cinemas.Any())
                 {
                     context.Cinemas.AddRange(new List<Cinema>()
                     {
@@ -145,8 +144,8 @@ namespace mycinema.Data
                             imgurl = "http://dotnethow.net/images/movies/movie-3.jpeg",
                             starttime = DateTime.Now.AddDays(-10),
                             endtime = DateTime.Now.AddDays(10),
-                            cinemaId = 3,
-                            ProducerId = 3,
+                            cinemaId = 13,
+                            ProducerId = 10,
                             MovieCategery = MovieCategery.Documentary
                         },
                         new Movie()
@@ -157,8 +156,8 @@ namespace mycinema.Data
                             imgurl = "http://dotnethow.net/images/movies/movie-1.jpeg",
                             starttime = DateTime.Now,
                             endtime = DateTime.Now.AddDays(3),
-                            cinemaId = 1,
-                            ProducerId = 1,
+                            cinemaId = 16,
+                            ProducerId = 11,
                             MovieCategery = MovieCategery.Action
                         },
                         new Movie()
@@ -169,8 +168,8 @@ namespace mycinema.Data
                             imgurl = "http://dotnethow.net/images/movies/movie-4.jpeg",
                             starttime = DateTime.Now,
                             endtime = DateTime.Now.AddDays(7),
-                            cinemaId = 4,
-                            ProducerId = 4,
+                            cinemaId = 14,
+                            ProducerId = 10,
                             MovieCategery = MovieCategery.Horror
                         },
                         new Movie()
@@ -181,8 +180,8 @@ namespace mycinema.Data
                             imgurl = "http://dotnethow.net/images/movies/movie-6.jpeg",
                             starttime = DateTime.Now.AddDays(-10),
                             endtime = DateTime.Now.AddDays(-5),
-                            cinemaId = 1,
-                            ProducerId = 2,
+                            cinemaId = 15,
+                            ProducerId = 9,
                             MovieCategery = MovieCategery.Documentary
                         },
                         new Movie()
@@ -193,8 +192,8 @@ namespace mycinema.Data
                             imgurl = "http://dotnethow.net/images/movies/movie-7.jpeg",
                             starttime = DateTime.Now.AddDays(-10),
                             endtime = DateTime.Now.AddDays(-2),
-                            cinemaId = 1,
-                            ProducerId = 3,
+                            cinemaId = 13,
+                            ProducerId = 8,
                             MovieCategery = MovieCategery.Cartoon
                         },
                         new Movie()
@@ -205,8 +204,8 @@ namespace mycinema.Data
                             imgurl = "http://dotnethow.net/images/movies/movie-8.jpeg",
                             starttime = DateTime.Now.AddDays(3),
                             endtime = DateTime.Now.AddDays(20),
-                            cinemaId = 1,
-                            ProducerId = 5,
+                            cinemaId = 12,
+                            ProducerId = 7,
                             MovieCategery = MovieCategery.Drama
                         }
                     });
@@ -220,96 +219,32 @@ namespace mycinema.Data
                     {
                         new Actor_Movie()
                         {
-                            ActorId = 1,
-                            MovieId = 1
+                            ActorId = 12,
+                            MovieId = 15
                         },
                         new Actor_Movie()
                         {
-                            ActorId = 3,
-                            MovieId = 1
-                        },
-
-                         new Actor_Movie()
-                        {
-                            ActorId = 1,
-                            MovieId = 2
-                        },
-                         new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 2
+                            ActorId = 13,
+                            MovieId = 14
                         },
 
                         new Actor_Movie()
                         {
-                            ActorId = 1,
-                            MovieId = 3
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 2,
-                            MovieId = 3
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 5,
-                            MovieId = 3
+                            ActorId = 15,
+                            MovieId = 13
                         },
 
-
+                      
                         new Actor_Movie()
                         {
-                            ActorId = 2,
-                            MovieId = 4
+                            ActorId = 14,
+                            MovieId = 15
                         },
+                       
                         new Actor_Movie()
                         {
-                            ActorId = 3,
-                            MovieId = 4
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 4
-                        },
-
-
-                        new Actor_Movie()
-                        {
-                            ActorId = 2,
-                            MovieId = 5
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 3,
-                            MovieId = 5
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 5
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 5,
-                            MovieId = 5
-                        },
-
-
-                        new Actor_Movie()
-                        {
-                            ActorId = 3,
-                            MovieId = 6
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 4,
-                            MovieId = 6
-                        },
-                        new Actor_Movie()
-                        {
-                            ActorId = 5,
-                            MovieId = 6
+                            ActorId = 15,
+                            MovieId = 16
                         },
                     });
                     context.SaveChanges();
