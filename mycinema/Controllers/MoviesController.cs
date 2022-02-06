@@ -13,7 +13,7 @@ namespace mycinema.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var allmovies = await _conext.Movies.ToListAsync();
+            var allmovies = await _conext.Movies.Include(n=> n.Cinema).ToListAsync();
             return View(allmovies);
         }
     }
