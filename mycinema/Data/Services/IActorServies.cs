@@ -4,7 +4,7 @@ namespace mycinema.Data.Services
 {
     public interface IActorServies
     {
-        IEnumerable<Actor> GetAll();
+        Task<IEnumerable<Actor>> GetAll();
         void add(Actor actor);
         Actor delete(int id);
         

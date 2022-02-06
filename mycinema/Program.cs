@@ -1,11 +1,13 @@
 using mycinema.Data;
 using Microsoft.EntityFrameworkCore;
+using mycinema.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connect = builder.Configuration.GetConnectionString("DefaultConnectionString");
 builder.Services.AddDbContext<AppDBContext>(option => option.UseSqlServer(connect));
+builder.Services.AddScoped<IActorServies, ActorService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
