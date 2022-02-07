@@ -8,7 +8,7 @@ namespace mycinema.Data.Services
         void add(Actor actor);
         Actor delete(int id);
         
-        void update(int id, Actor newActor);
-        Actor getById(int id);
+        Task <Actor> update(int id, Actor newActor);
+        Task <Actor> getByIdasnyc(int id);
     }
 }

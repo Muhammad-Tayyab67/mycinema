@@ -7,11 +7,17 @@ namespace mycinema.Models
         [Key]
         public int id { get; set; }
 
-        [Display (Name="Full Name")]
-        public string Name { get; set; }
-        [Display(Name = "Profile Pic URL")]
-        public string profilepicurl { get; set; }
 
+        [Display (Name="Full Name")]
+        [Required(ErrorMessage ="Please Enter Full Name")]
+        public string Name { get; set; }
+        
+        
+        [Display(Name = "Profile Pic URL")]
+        [Required(ErrorMessage ="Profile Must Provide")]
+        public string profilepicurl { get; set; }
+        
+        [Required(ErrorMessage ="Give Some Bio's")]
         [Display(Name = "BIO")]
         public string bio { get; set; }
 

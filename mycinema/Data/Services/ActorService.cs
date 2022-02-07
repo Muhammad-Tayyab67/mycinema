@@ -13,7 +13,8 @@ namespace mycinema.Data.Services
         }
         public void add(Actor actor)
         {
-            throw new NotImplementedException();
+            _context.Actors.Add(actor);
+            _context.SaveChanges();
         }
 
         public Actor delete(int id)
@@ -27,14 +28,20 @@ namespace mycinema.Data.Services
             return data;
         }
 
-        public Actor getById(int id)
+        public async Task<Actor> getByIdasnyc(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Actors.FirstOrDefaultAsync(n => n.id == id);
+             return result;
+            
+            
+            
         }
 
-        public void update(int id, Actor newActor)
+        public async Task<Actor> update(int id, Actor newActor)
         {
-            throw new NotImplementedException();
+            _context.Actors.Update(newActor);
+            await _context.SaveChangesAsync();
+            return newActor;
         }
     }
 }
