@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using mycinema.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace mycinema.Models
 {
-    public class Actor
+    public class Actor : IEntityBase
     {
         [Key]
         public int id { get; set; }
-
 
         [Display (Name="Full Name")]
         [Required(ErrorMessage ="Please Enter Full Name")]

@@ -24,7 +24,7 @@ namespace mycinema.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("profilepicurl,Name,bio")]Actor actor)
         {
-                _service.add(actor);
+                await _service.AddAsync(actor);
                 return RedirectToAction(nameof(Index)); 
         }
         public async Task<IActionResult> Details(int id)
@@ -51,6 +51,23 @@ namespace mycinema.Controllers
         public async Task<IActionResult> Edit(int id,Actor actor)
         {
            await _service.update(id,actor);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _service.getByIdasnyc(id);
+            if (result == null)
+            {
+                return View("Empty");
+
+            }
+            return View(result);
+        }
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(int id)
+        {
+            await _service.Delete(id);
             return RedirectToAction(nameof(Index));
         }
 
