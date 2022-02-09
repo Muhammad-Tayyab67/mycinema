@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 var connect = builder.Configuration.GetConnectionString("DefaultConnectionString");
 builder.Services.AddDbContext<AppDBContext>(option => option.UseSqlServer(connect));
 builder.Services.AddScoped<IActorServies, ActorService>();
+builder.Services.AddScoped<IProducerServices, ProducerServices>();
+builder.Services.AddScoped<ICinemaServices, CinemaServices>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
