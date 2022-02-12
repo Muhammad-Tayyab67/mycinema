@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Linq.Expressions;
 
 namespace mycinema.Data.Base
 {
@@ -25,6 +26,14 @@ namespace mycinema.Data.Base
         }
 
         public async Task<IEnumerable<T>> GetAll()=>await _context.Set<T>().ToListAsync();
+
+        public async Task<IEnumerable<T>> GetAll(params Expression<Func<T, object>>[] includeproperties)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            query = includeproperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            return await query.ToListAsync();
+
+        }
 
         public async Task<T> getByIdasnyc(int id) => await _context.Set<T>().FirstOrDefaultAsync(n => n.id == id);
 

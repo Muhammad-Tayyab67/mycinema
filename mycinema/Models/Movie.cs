@@ -1,10 +1,11 @@
 ﻿using mycinema.Data;
+using mycinema.Data.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace mycinema.Models
 {
-    public class Movie
+    public class Movie:IEntityBase
     {
         [Key]
         public int id { get; set; }
