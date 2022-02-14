@@ -13,6 +13,30 @@ namespace mycinema.Data.Services
             _context = context;
         }
 
+        public async Task addnewmovieAsync(NewMovieVM data)
+        {
+            var newmovie = new Movie();
+           newmovie.Name = data.Name;
+            newmovie.starttime = data.starttime;
+            newmovie.imgurl = data.imgurl;  
+            newmovie.MovieCategery=data.MovieCategery;
+            newmovie.price= data.price;
+            newmovie.ProducerId = data.ProducerId;
+            newmovie.cinemaId = data.cinemaId;
+            newmovie.descr= data.descr; 
+            await _context.AddAsync(newmovie);
+            await _context.SaveChangesAsync();
+
+            foreach(var actorid in data.ActorIds)
+            {
+                var newactorid = new Actor_Movie();
+                    newactorid.MovieId = newmovie.id;
+                newactorid.ActorId = actorid;
+                await _context.Actors_Movies.AddAsync(newactorid);
+            }
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<Movie> GetMovieByIdAsync(int id)
         {
             var movieDetail = await _context.Movies

@@ -8,5 +8,6 @@ namespace mycinema.Data.Services
     {
         Task<Movie> GetMovieByIdAsync(int id);
         Task<NewMovieDropdownVM> moviedropdowns();
+        Task addnewmovieAsync(NewMovieVM data);
     }
 }
