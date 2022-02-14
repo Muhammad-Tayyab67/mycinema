@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using mycinema.Data;
 using mycinema.Data.Services;
@@ -23,6 +24,14 @@ namespace mycinema.Controllers
             return View(md);
 
         }
-     
+     public async Task<IActionResult> Create()
+        {
+            var moviedropdowndata = await _service.moviedropdowns();
+            ViewBag.Actors = new SelectList(moviedropdowndata.Actors, "id", "Name");
+            ViewBag.Producers = new SelectList(moviedropdowndata.Producers, "id", "Name");
+            ViewBag.Cinemas = new SelectList(moviedropdowndata.Cinemas, "id", "Name");
+            return View();
+            
+        }
     }
 }
