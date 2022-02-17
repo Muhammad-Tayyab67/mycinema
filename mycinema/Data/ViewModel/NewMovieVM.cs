@@ -7,7 +7,7 @@ namespace mycinema.Models
 {
     public class NewMovieVM
     {
-       
+        public int Id { get; set; }
         [Display(Name = "Full Name")]
         [Required(ErrorMessage ="Please Enter FullName")]
         public string Name { get; set; }
