@@ -19,6 +19,17 @@ namespace mycinema.Controllers
             var allmovies = await _service.GetAll(n=> n.Cinema);
             return View(allmovies);
         }
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var allmovies = await _service.GetAll(n => n.Cinema);
+            if(!string.IsNullOrEmpty(searchString))
+            {
+                var filterResult = allmovies.Where(n => n.Name.Contains(searchString) || n.descr.Contains(searchString));
+                return View("Index",filterResult);
+            }
+
+            return View("Index",allmovies);
+        }
         public async Task<IActionResult> Details(int id)
         {
             var md= await _service.GetMovieByIdAsync(id);
