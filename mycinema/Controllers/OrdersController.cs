@@ -29,5 +29,25 @@ namespace mycinema.Controllers
             return View(response);
         
         }
+        public async Task<RedirectToActionResult> AddItemToShoppingCart(int id)
+        {
+            var item = await _movieserviece.GetMovieByIdAsync(id);
+            if(item!=null)
+            {
+                _shopingCart.AddItemToCart(item);
+            }
+            return RedirectToAction(nameof(Index));
+
+        }
+        public async Task<RedirectToActionResult> RemoveItemToShoppingCart(int id)
+        {
+            var item = await _movieserviece.GetMovieByIdAsync(id);
+            if (item != null)
+            {
+                _shopingCart.RemoveItemFromCart(item);
+            }
+            return RedirectToAction(nameof(Index));
+
+        }
     }
 }
