@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using mycinema.Models;
 
 namespace mycinema.Data
 {
-    public class AppDBContext : DbContext
+    public class AppDBContext : IdentityDbContext<ApplicationUser>
     {
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {

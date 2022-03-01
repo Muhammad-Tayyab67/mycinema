@@ -29,7 +29,7 @@ namespace mycinema.Controllers
             return View(response);
         
         }
-        public async Task<RedirectToActionResult> AddItemToShoppingCart(int id)
+        public async Task<IActionResult> AddItemToShoppingCart(int id)
         {
             var item = await _movieserviece.GetMovieByIdAsync(id);
             if(item!=null)
@@ -39,7 +39,7 @@ namespace mycinema.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-        public async Task<RedirectToActionResult> RemoveItemToShoppingCart(int id)
+        public async Task<IActionResult> RemoveItemToShoppingCart(int id)
         {
             var item = await _movieserviece.GetMovieByIdAsync(id);
             if (item != null)

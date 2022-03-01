@@ -12,8 +12,9 @@ namespace mycinema.Data.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var item= _shopingCart.GetShopingCartItem();
-            return View(item.Count);
+            var items= _shopingCart.GetShopingCartItem();
+            return View(items.Count);
         }
     }
 }
+ 
