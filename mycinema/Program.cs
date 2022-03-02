@@ -2,6 +2,9 @@ using mycinema.Data;
 using Microsoft.EntityFrameworkCore;
 using mycinema.Data.Services;
 using mycinema.Data.Cart;
+using mycinema.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +17,14 @@ builder.Services.AddScoped<ICinemaServices, CinemaServices>();
 builder.Services.AddScoped<IMoviesServices, MoviesServices>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sc => ShopingCart.GetShoppingCart(sc));
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDBContext>();
+builder.Services.AddMemoryCache();
 builder.Services.AddSession();
+builder.Services.AddAuthentication(option =>
+{
+    option.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+});
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -32,11 +42,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Movies}/{action=Index}/{id?}");
 AppDbInitializer.Seed(app);
+AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 app.Run();
 
